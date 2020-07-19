@@ -2,7 +2,7 @@ package cmd_parvati
 
 import (
 	"github.com/jessevdk/go-flags"
-	"github.com/misatosangel/parvati-api-client/parvatigo"
+	"github.com/misatosangel/parvati-api-client/pkg/parvatigo"
 )
 
 type Details struct {

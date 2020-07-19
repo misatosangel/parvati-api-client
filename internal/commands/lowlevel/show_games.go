@@ -3,8 +3,8 @@ package cmd_lowlevel
 import (
 	"fmt"
 	"github.com/jessevdk/go-flags"
-	"github.com/misatosangel/parvati-api-client/parvatigo"
-	"github.com/misatosangel/parvati-api-types-golang"
+	"github.com/misatosangel/parvati-api-client/pkg/parvatigo"
+	"github.com/misatosangel/parvati-api-client/pkg/swagger"
 	"sort"
 	"strings"
 )

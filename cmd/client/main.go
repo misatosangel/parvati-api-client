@@ -3,13 +3,15 @@ package main
 import (
 	"fmt"
 	"github.com/jessevdk/go-flags"
-	"github.com/misatosangel/parvati-api-client/commands/generic"
-	"github.com/misatosangel/parvati-api-client/commands/lowlevel"
-	"github.com/misatosangel/parvati-api-client/commands/parvati"
-	"github.com/misatosangel/parvati-api-client/iface"
-	"github.com/misatosangel/parvati-api-client/parvatigo"
 	"log"
 	"os"
+
+	"github.com/misatosangel/parvati-api-client/pkg/parvatigo"
+
+	"github.com/misatosangel/parvati-api-client/internal/commands/generic"
+	"github.com/misatosangel/parvati-api-client/internal/commands/lowlevel"
+	"github.com/misatosangel/parvati-api-client/internal/commands/parvati"
+	"github.com/misatosangel/parvati-api-client/internal/iface"
 )
 
 // Variables used for command line parameters

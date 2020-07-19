@@ -3,10 +3,10 @@ package cmd_parvati
 import (
 	"fmt"
 	"github.com/jessevdk/go-flags"
-	"github.com/misatosangel/parvati-api-client/commands/lowlevel"
-	"github.com/misatosangel/parvati-api-client/iface"
-	"github.com/misatosangel/parvati-api-client/parvatigo"
-	"github.com/misatosangel/parvati-api-types-golang"
+	"github.com/misatosangel/parvati-api-client/internal/commands/lowlevel"
+	"github.com/misatosangel/parvati-api-client/internal/iface"
+	"github.com/misatosangel/parvati-api-client/pkg/parvatigo"
+	"github.com/misatosangel/parvati-api-client/pkg/swagger"
 	"log"
 	"net"
 	"os"
@@ -60,9 +60,9 @@ func (self *HostWatch) SetConfigFile(filePath string) {
 
 func (self *HostWatch) Execute(args []string) error {
 	// check available configured games
-	knownGames, err := self.api.GetGames()
-	if err != nil {
-		return err
+	knownGames, apiErr := self.api.GetGames()
+	if apiErr != nil {
+		return apiErr
 	}
 	if len(knownGames) == 0 {
 		return fmt.Errorf("Parvati's backend is not configured; no known games were found.\n")

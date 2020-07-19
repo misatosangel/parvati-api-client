@@ -3,8 +3,8 @@ package cmd_parvati
 import (
 	"fmt"
 	"github.com/jessevdk/go-flags"
-	"github.com/misatosangel/parvati-api-client/commands/lowlevel"
-	"github.com/misatosangel/parvati-api-client/parvatigo"
+	"github.com/misatosangel/parvati-api-client/internal/commands/lowlevel"
+	"github.com/misatosangel/parvati-api-client/pkg/parvatigo"
 	"github.com/misatosangel/traceroute"
 	"os"
 	"os/signal"

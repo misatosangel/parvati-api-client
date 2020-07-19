@@ -1,7 +1,7 @@
 package cmd_generic
 
 import (
-	"github.com/misatosangel/parvati-api-client/parvatigo"
+	"github.com/misatosangel/parvati-api-client/pkg/parvatigo"
 )
 
 type APICommand interface {

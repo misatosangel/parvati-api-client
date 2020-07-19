@@ -2,7 +2,7 @@ package cmd_lowlevel
 
 import (
 	"github.com/jessevdk/go-flags"
-	"github.com/misatosangel/parvati-api-client/parvatigo"
+	"github.com/misatosangel/parvati-api-client/pkg/parvatigo"
 
 	"fmt"
 	"github.com/misatosangel/traceroute"
