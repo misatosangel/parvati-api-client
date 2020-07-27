@@ -44,6 +44,16 @@ Eventually more of the auto-generated copy-pasta in the `*_api.go` files
 will be re-factored and pulled in to `api.go`.
 
 
+## Testing
+
+First set `API_TEST_CONFIG` to point to a `gitconfig` format file containing
+your URI and credentials. Then run
+
+`go test ./pkg/parvatigo`
+
+Currently there's only one test (creating an unregistered user). Lots more to
+do here; but somewhat pointless until the backend server is also opensourced.
+
 ### Swagger-generated version info
 
 - API version: 1.0.0

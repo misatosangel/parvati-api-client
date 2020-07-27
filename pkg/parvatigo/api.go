@@ -136,6 +136,10 @@ func (self *Api) GetUserDetails(user string) (*swagger.User, *ApiError) {
 
 // default config file is ~/.parvati.config
 func DefaultConfigFile() (string, error) {
+    conf_file := os.Getenv( "PARVATI_API_CONFIG" );
+	if conf_file != "" {
+		return conf_file, nil
+	}
 	usr, err := user.Current()
 	if err != nil {
 		return "", err
@@ -157,6 +161,19 @@ func (self *Api) Info() string {
 func (self *Api) UpdateWaitTime(game *swagger.Game, plyrId uint64, until time.Duration, message string) *ApiError {
 	_, resp, err := self.HApi.DeclareWait(plyrId, game.UrlShortName, self.announcer, until, message)
 	return ApiErr(resp, err)
+}
+
+// Make an 'Unregistered @ IP' user
+func (self *Api) MakeUnregisteredUser( ip net.IP, port uint16 ) (*swagger.User, *ApiError) {
+	nick := "Unregistered @ " + ip.String()
+	if port == 0 {
+		port = 10800
+	}
+	delta, r, apiErr := self.UApi.UserCreate("", nick, ip, int(port))
+	if apiErr != nil {
+		return nil, ApiErr(r, fmt.Errorf("Unable to create new unknown user: '%s': %s", nick, apiErr.Error()))
+	}
+	return &delta.Player, nil
 }
 
 // Attempts to update the status for a given host
@@ -182,14 +199,8 @@ func (self *Api) UpdateHostStatus(game *swagger.Game, info StatusUpdate) (*swagg
 		var apiErr *ApiError
 		op, apiErr = self.GetUserDetails(ipAddr)
 		if apiErr != nil {
-			fmt.Printf("Could not get details for: '" + ipAddr + "' - " + apiErr.Error())
-			nick := "Unregistered @ " + ipAddr
 			ip := net.ParseIP(ipAddr)
-			delta, r, apiErr := self.UApi.UserCreate("", nick, ip, 10800)
-			if apiErr != nil {
-				return nil, ApiErr(r, fmt.Errorf("Unable to create new unknown user: '%s': %s", nick, apiErr.Error()))
-			}
-			op = &delta.Player
+			op, apiErr = self.MakeUnregisteredUser( ip, game.Port )
 		}
 	}
 	if op != nil {
