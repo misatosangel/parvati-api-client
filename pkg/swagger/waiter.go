@@ -33,10 +33,10 @@ type Waiter struct {
 	JoinedID int64 `json:"joined_id,omitempty"`
 
 	// Time when the host appeared.
-	Started time.Time `json:"wait_until,omitempty"`
+	Started time.Time `json:"started,omitempty"`
 
 	// How long this waiter will advertise until
-	WaitUntil time.Time `json:"started,omitempty"`
+	WaitUntil time.Time `json:"wait_until,omitempty"`
 
 	// Whether this is a host or somebody waiting.
 	IsHosting bool `json:"is_hosting,omitempty"`
